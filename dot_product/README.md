@@ -8,8 +8,8 @@ Comparison between pure go implementation (parallelized on 4 cores) and go+rust 
 
 Each implementation ran 5 times, see [results.csv](https://github.com/mihaigalos/optimized_go/blob/main/dot_product/results.csv).
 
-* Go+Rust is 1.62x faster than pure Go, a mean of 364ms (stddev σ = 2.47ms)
-* Pure Go requires 592ms on average (stddev σ = 56ms).
+* Go+Rust is only 10% faster than pure Go, a mean of 364ms (stddev σ = 2.47ms)
+* Pure Go requires 403ms on average (stddev σ = 5.31ms).
 
 ### Reproducing
 

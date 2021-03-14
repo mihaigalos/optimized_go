@@ -41,8 +41,6 @@ func main() {
 	//fmt.Println("Generation of random slices, Dotproduct, Algo")
 	m1 := randomSlice()
 	m2 := randomSlice()
-	t2 := time.Now()
-	fmt.Print(t2.Sub(t1), ", ")
 
 	result1 := make([]int32, len(m1), len(m1))
 	result2 := make([]int32, len(m1), len(m1))
@@ -62,8 +60,10 @@ func main() {
 		result4 = parallelProduct(&m1, &m2, uint32(len(m1)/2+len(m1)/4), uint32(len(m1)))
 	}
 
+	t2 := time.Now()
 	parallelize(func1, func2, func3, func4)
 	t3 := time.Now()
+	fmt.Print(t2.Sub(t1), ", ")
 	fmt.Print(t3.Sub(t2), ", ")
 	fmt.Println("PureGo")
 }

@@ -1,15 +1,12 @@
-use std::collections::HashMap;
+extern crate libc;
 
-pub fn dot_product(m1: &HashMap<u32, i32>, m2: &HashMap<u32, i32>, result: &mut HashMap<u32, i32>) {
-    for i in 0..m1.len() {
-        println!(
-            "{}, {}",
-            m1.get(&(i as u32)).unwrap(),
-            m2.get(&(i as u32)).unwrap()
-        );
-
-        let dot = m1.get(&(i as u32)).unwrap() * m2.get(&(i as u32)).unwrap();
-        result.insert(i as u32, dot);
+#[no_mangle]
+pub extern "C" fn dot_product(v1: *const i32, v2: *const i32, len: isize, result: *mut i32) {
+    for i in 0..len {
+        unsafe {
+            let dot = *v1.offset(i) * (*v2.offset(i));
+            *result.offset(i) = dot;
+        }
     }
 }
 
@@ -19,19 +16,15 @@ mod tests {
 
     #[test]
 
-    fn dot_product_works() {
-        let (mut m1, mut m2, mut result) = (HashMap::new(), HashMap::new(), HashMap::new());
-        m1.insert(0, 10);
-        m1.insert(1, 11);
-        m1.insert(2, 12);
-        m2.insert(0, 20);
-        m2.insert(1, 21);
-        m2.insert(2, 22);
+    fn dot_product_works_when_typical() {
+        let m1: &[i32] = &[10, 11, 12];
+        let m2: &[i32] = &[20, 21, 22];
+        let result: &mut [i32] = &mut [0, 0, 0];
 
-        dot_product(&m1, &m2, &mut result);
+        dot_product(m1.as_ptr(), m2.as_ptr(), 3, result.as_mut_ptr());
 
-        assert!(result.get(&0).unwrap() == &(200 as i32));
-        assert!(result.get(&1).unwrap() == &(231 as i32));
-        assert!(result.get(&2).unwrap() == &(264 as i32));
+        assert!(result[0] == 200);
+        assert!(result[1] == 231);
+        assert!(result[2] == 264);
     }
 }

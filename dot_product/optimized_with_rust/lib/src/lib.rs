@@ -15,7 +15,6 @@ mod tests {
     use super::*;
 
     #[test]
-
     fn dot_product_works_when_typical() {
         let s1: &[i32] = &[10, 11, 12];
         let s2: &[i32] = &[20, 21, 22];

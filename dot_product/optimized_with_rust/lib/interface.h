@@ -1,1 +1,1 @@
-void dot_product(int map1[], int map2[], int length, int result[]);
+void dot_product(int s1[], int s2[], int length, int result[]);

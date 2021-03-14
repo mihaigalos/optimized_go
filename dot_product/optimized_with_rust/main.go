@@ -28,7 +28,7 @@ func main() {
 
 	t3 := time.Now()
 	result := make([]int32, len(s1), len(s1))
-	C.dot_product((*C.int)(&s1[0]), (*C.int)(&s2[0]), C.int(len(s1)), (*C.int)(&result[0]))
+	C.dot_product((*C.int)(&s1[0]), (*C.int)(&s2[0]), C.ulonglong(len(s1)), (*C.int)(&result[0]))
 	fmt.Print(t3.Sub(t2), ", ")
 	fmt.Println("Go+Rust")
 }

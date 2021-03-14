@@ -1,1 +1,1 @@
-void dot_product(int s1[], int s2[], int length, int result[]);
+void dot_product(const int s1[], const int s2[], const int length, int result[]);

@@ -21,15 +21,15 @@ func parallelize(functions ...func()) {
 	}
 }
 
-func randomMap() map[uint32]int32 {
-	m := make(map[uint32]int32)
-	for i := uint32(0); i < 50000000; i++ {
-		m[i] = rand.Int31n(100000)
+func randomSlice() []int32 {
+	var result []int32
+	for i := 0; i < 350000000; i++ {
+		result = append(result, rand.Int31n(100000))
 	}
-	return m
+	return result
 }
-func parallelProduct(m1 *map[uint32]int32, m2 *map[uint32]int32, start uint32, stop uint32) map[uint32]int32 {
-	result := make(map[uint32]int32)
+func parallelProduct(m1 *[]int32, m2 *[]int32, start uint32, stop uint32) []int32 {
+	result := make([]int32, len(*m1))
 	for i := start; i < stop; i++ {
 		result[i] = (*m1)[i] * (*m2)[i]
 	}
@@ -38,16 +38,16 @@ func parallelProduct(m1 *map[uint32]int32, m2 *map[uint32]int32, start uint32, s
 
 func main() {
 	t1 := time.Now()
-	fmt.Println("generating random maps..")
-	m1 := randomMap()
-	m2 := randomMap()
+	fmt.Println("generating random slices..")
+	m1 := randomSlice()
+	m2 := randomSlice()
 	t2 := time.Now()
 	fmt.Println(t2.Sub(t1))
 
-	result1 := make(map[uint32]int32)
-	result2 := make(map[uint32]int32)
-	result3 := make(map[uint32]int32)
-	result4 := make(map[uint32]int32)
+	result1 := make([]int32, len(m1), len(m1))
+	result2 := make([]int32, len(m1), len(m1))
+	result3 := make([]int32, len(m1), len(m1))
+	result4 := make([]int32, len(m1), len(m1))
 
 	fmt.Println("starting..")
 	func1 := func() {

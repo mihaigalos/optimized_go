@@ -11,6 +11,15 @@ Each implementation ran 5 times, see [results.csv](https://github.com/mihaigalos
 * Go+Rust is 10x faster than pure Go, a mean of 52us (stddev σ = 3.17us)
 * Pure Go requires 592ms on average (stddev σ = 56ms).
 
+### Reproducing
+
+```bash
+» go run pure_go.go
+
+» cd optimized_with_rust
+» make run
+```
+
 ### Software
 ```bash
 » go version

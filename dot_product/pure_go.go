@@ -53,13 +53,13 @@ func main() {
 		result1 = parallelProduct(&m1, &m2, 0, uint32(len(m1)/4))
 	}
 	func2 := func() {
-		result2 = parallelProduct(&m1, &m2, uint32(len(m1)/4+1), uint32(len(m1)/2))
+		result2 = parallelProduct(&m1, &m2, uint32(len(m1)/4), uint32(len(m1)/2))
 	}
 	func3 := func() {
-		result3 = parallelProduct(&m1, &m2, uint32(len(m1)/2+1), uint32(len(m1)/2+len(m1)/4))
+		result3 = parallelProduct(&m1, &m2, uint32(len(m1)/2), uint32(len(m1)/2+len(m1)/4))
 	}
 	func4 := func() {
-		result4 = parallelProduct(&m1, &m2, uint32(len(m1)/2+len(m1)/4+1), uint32(len(m1)))
+		result4 = parallelProduct(&m1, &m2, uint32(len(m1)/2+len(m1)/4), uint32(len(m1)))
 	}
 
 	parallelize(func1, func2, func3, func4)

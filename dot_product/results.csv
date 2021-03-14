@@ -4,3 +4,8 @@ Generation of random slices, Dotproduct, Algo
 17.584031773s, 566.915024ms, PureGo
 17.811304096s, 571.81202ms, PureGo
 18.164239278s, 703.968454ms, PureGo
+18.062887166s, 48.309µs, Go+Rust
+17.86307297s, 52.275µs, Go+Rust
+18.243810453s, 53.875µs, Go+Rust
+18.065568197s, 58.004µs, Go+Rust
+18.056530217s, 51.506µs, Go+Rust
